@@ -2,34 +2,31 @@
 
 ######HTMLを変数に格納#########
 def values
-	tabCts-first = "<div id=\"point-jump-fest\" class=\"tabsCts first-child\">"
-	tabCts = "<div id=\"point-jump-fest\" class=\"tabsCts \">"
+	$tabCts_first = "<div id=\"point-jump-fest\" class=\"tabsCts first-child\">"
+	$tabCts = "<div id=\"point-jump-fest\" class=\"tabsCts \">"
 
 
 
 	imgClmBlockR = "<div class=\"imgClmBlockR\">
-					<div class=\"img\">
-					<p><img src=\"imgs/event01/ph-event01-2013-09-01.jpg\" alt=\"\" /></p>
+					<div class=\"img\">"
+
+			imgs ="<p><img src=\"imgs/event01/ph-event01-2013-09-01.jpg\" alt=\"\" /></p>
 					<ul class=\"thumb\">
 					<li><a href=\"imgs/event01/ph-event01-2013-09-01.jpg\"><img src=\"imgs/event01/ph-event01-2013-09-thumb-01_ov.jpg\" alt=\"\" class=\"selected\" /></a></li>
 					<li><a href=\"imgs/event01/ph-event01-2013-09-02.jpg\"><img src=\"imgs/event01/ph-event01-2013-09-thumb-02_off.jpg\" alt=\"\" /></a></li>
-					<li><a href=\"imgs/event01/ph-event01-2013-09-03.jpg\"><img src=\"imgs/event01/ph-event01-2013-09-thumb-03_off.jpg\" alt=\"\" /></a></li>
-					<li><a href=\"imgs/event01/ph-event01-2013-09-04.jpg\"><img src=\"imgs/event01/ph-event01-2013-09-thumb-04_off.jpg\" alt=\"\" /></a></li>
-					<li><a href=\"imgs/event01/ph-event01-2013-09-05.jpg\"><img src=\"imgs/event01/ph-event01-2013-09-thumb-05_off.jpg\" alt=\"\" /></a></li>
-					<li><a href=\"imgs/event01/ph-event01-2013-09-06.jpg\"><img src=\"imgs/event01/ph-event01-2013-09-thumb-06_off.jpg\" alt=\"\" /></a></li>
+					
 					</ul> "
 
 	zoom ="<p class=\"zoom notSmooth\">
 			<a href=\"imgs/event01/ph-event01-2013-09-01-large.jpg\" rel=\"shadowbox[event01-2013-09]\" class=\"option\"><img src=\"../common/imgs/ico-zoom_off.png\" alt=\"\" class=\"ahover\" /></a>
-			<a href=\"imgs/event01/ph-event01-2013-09-02-large.jpg\" rel=\"shadowbox[event01-2013-09]\" class=\"hidden\"><img src=\"../common/imgs/ico-zoom_off.png\" alt=\"\" class=\"ahover\" /></a>
-			<a href=\"imgs/event01/ph-event01-2013-09-03-large.jpg\" rel=\"shadowbox[event01-2013-09]\" class=\"hidden\"><img src=\"../common/imgs/ico-zoom_off.png\" alt=\"\" class=\"ahover\" /></a>
-			<a href=\"imgs/event01/ph-event01-2013-09-04-large.jpg\" rel=\"shadowbox[event01-2013-09]\" class=\"hidden\"><img src=\"../common/imgs/ico-zoom_off.png\" alt=\"\" class=\"ahover\" /></a>
-			<a href=\"imgs/event01/ph-event01-2013-09-05-large.jpg\" rel=\"shadowbox[event01-2013-09]\" class=\"hidden\"><img src=\"../common/imgs/ico-zoom_off.png\" alt=\"\" class=\"ahover\" /></a>
-			<a href=\"imgs/event01/ph-event01-2013-09-06-large.jpg\" rel=\"shadowbox[event01-2013-09]\" class=\"hidden\"><img src=\"../common/imgs/ico-zoom_off.png\" alt=\"\" class=\"ahover\" /></a>
+			
 			</p>
 			</div>"
 
-
+	cho = zoom.chomp
+	p zoom
+	puts(cho);
+	puts(zoom);
 end
 
 
@@ -41,6 +38,17 @@ end
 
 ####functions######
 class HtmlGenerater
+
+	def what_content()
+	
+		printff("htmlのファイル名\n");
+
+		_file = gets.chomp;
+
+
+	end
+
+	
 
 	def tabfront_or()
 		printf("一番上？\n");
@@ -66,37 +74,73 @@ class HtmlGenerater
 		printf("写真はなんこ？\n");
 
 		_img_num = gets.to_i;
+
 		
 		return _img_num;
 
 	end
 
 	def text_imput ()
+
+		content_arr = Array.new
+
 		printf("タイトルは\n");
 
-		_title = gets.chomp;
+		content_arr.push( gets.chomp);
 
 		printf("メインのテキストは?\n");
 
-		_body = gets.chomp;
+		content_arr.push( gets.chomp);
 
 		printf("会場\n");
 
-		_place = gets.chomp;
+		content_arr.push( gets.chomp);
 
 		printf("オープン期間\n");
 
-		_time = gets.chomp;
+		content_arr.push( gets.chomp);
 
 		printf("担当業務\n");
 
-		_work = gets.chomp;
+		content_arr.push( gets.chomp);
 
 		printf("撮影\n");
 
-		_photo = gets.chomp;
+		content_arr.push( gets.chomp);
+
+		return content_arr
+
 
 	end
+
+
+
+	def tabCts_output(_tab,_title)
+		printf("<!--#{_title}-->")
+
+		if( _tab == 0)
+			puts $tabCts
+		elsif( _tab == 1)
+			puts $tabCts_first
+		else
+			puts "VALUE IS WRONG"
+		end
+
+	end
+
+	def imgs_output(_img_num,_file)
+
+		puts "<p><img src=\"imgs/${_file}/ph-${_file}-2013-09-01.jpg\" alt=\"\" /></p>
+					<ul class=\"thumb\">"
+
+		puts "<li><a href=\"imgs/#{_file}/ph-#{_file}-2013-09-01.jpg\"><img src=\"imgs/#{_file}/ph-#{_file}-2013-09-thumb-01_ov.jpg\" alt=\"\" class=\"selected\" /></a></li>"
+
+		while  _img_num >= i=1 do |i|
+			puts "<li><a href=\"imgs/#{_file}/ph-#{_file}-2013-09-0#{i}.jpg\"><img src=\"imgs/#{_file}/ph-#{_file}-2013-09-thumb-#{i}_off.jpg\" alt=\"\" /></a></li>" 
+			
+		end
+
+	def 
 end
 
 
@@ -104,5 +148,9 @@ end
 ###########main#####
 a = HtmlGenerater.new
 
+$file = a.what_content()
 
-a.tabfront_or()
+
+
+
+
